@@ -1,5 +1,5 @@
-import jsPDF from 'jspdf';
 import { toPng, toJpeg, toSvg } from 'html-to-image';
+import jsPDF from 'jspdf';
 import type { Block } from '../types/template';
 import { generateMatrix } from '../lib/qr/matrix';
 import { renderQrSvg, svgToDataUrl } from '../lib/qr/renderer';

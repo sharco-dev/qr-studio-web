@@ -6,6 +6,8 @@ export function Sidebar() {
   const sidebarPosition = useEditorStore((s) => s.sidebarPosition);
   const selectedBlockId = useEditorStore((s) => s.selectedBlockId);
   const blocks = useEditorStore((s) => s.blocks);
+  const previewMode = useEditorStore((s) => s.previewMode);
+  const setPreviewMode = useEditorStore((s) => s.setPreviewMode);
   const updateBlock = useEditorStore((s) => s.updateBlock);
   const setSidebarPosition = useEditorStore((s) => s.setSidebarPosition);
 
@@ -15,7 +17,25 @@ export function Sidebar() {
 
   return (
     <div className={`sidebar sidebar--${sidebarPosition}`}>
-      <div className="sidebar__header">Properties</div>
+      <div className="sidebar__header">
+        Properties
+        <div className="topbar__group">
+          <button
+            className={`topbar__btn ${previewMode === 'mobile' ? 'topbar__btn--active' : ''}`}
+            onClick={() => setPreviewMode('mobile')}
+            title="Mobile preview"
+          >
+            📱
+          </button>
+          <button
+            className={`topbar__btn ${previewMode === 'desktop' ? 'topbar__btn--active' : ''}`}
+            onClick={() => setPreviewMode('desktop')}
+            title="Desktop preview"
+          >
+            🖥
+          </button>
+        </div>
+      </div>
       <div className="sidebar__content">
         {!selectedBlock ? (
           <div className="sidebar__empty">Select a block to edit its properties</div>

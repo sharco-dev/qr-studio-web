@@ -1,8 +1,21 @@
 import { useState } from "react"
+import { useEditorStore } from '../../store/editorStore';
 
 export function Topbar () {
 
-    const [exportOpen, setExportOpen] = useState(false)
+    const addBlock = useEditorStore((s) => s.addBlock);
+    const blocks = useEditorStore((s) => s.blocks);
+    const undo = useEditorStore((s) => s.undo);
+    const redo = useEditorStore((s) => s.redo);
+    const historyIndex = useEditorStore((s) => s.historyIndex);
+    const history = useEditorStore((s) => s.history);
+    const toggleSidebar = useEditorStore((s) => s.toggleSidebar);
+    const sidebarOpen = useEditorStore((s) => s.sidebarOpen);
+    const previewMode = useEditorStore((s) => s.previewMode);
+    const setPreviewMode = useEditorStore((s) => s.setPreviewMode);
+    const [addMenuOpen, setAddMenuOpen] = useState(false);
+    const [exportOpen, setExportOpen] = useState(false);
+    const [addBtnPos, setAddBtnPos] = useState({ x: 0, y: 0 });
 
     return (
         <header className="topbar">

@@ -2,11 +2,13 @@ import './App.css'
 import { Topbar } from './components/topbar/Topbar'
 import { Sidebar } from './components/sidebar/Sidebar'
 import { EditorCanvas } from './components/canvas/EditorCanvas'
+import { useEditorStore } from './store/editorStore'
 
 function App() {
+  const themeMode = useEditorStore((s) => s.themeMode);
 
   return (
-    <div>
+    <div  className={`app ${themeMode === 'dark' ? 'app--dark' : ''}`}>
       <Topbar />
       <div className="app__layout">
         <Sidebar />

@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useEditorStore } from '../../store/editorStore';
+import { AddBlockMenu } from "../canvas/AddBlockMenu";
 
 export function Topbar () {
 
@@ -31,7 +32,15 @@ export function Topbar () {
             </div>
             <div className="topbar__right">
                 <div className="topbar__group">
-                    <button className="topbar__btn topbar__btn--primary">
+                    <button
+                        className="topbar__btn topbar__btn--primary"
+                        onClick={(e) => {
+                            const rect = e.currentTarget.getBoundingClientRect();
+                            console.log("EVENTO")
+                            setAddBtnPos({ x: rect.left, y: rect.bottom + 4 });
+                            setAddMenuOpen(true);
+                        }}
+                    >
                         + Add Block
                     </button>
                     <div className="topbar__dropdworn-wrapper">
@@ -51,6 +60,23 @@ export function Topbar () {
                     </div>
                 </div>
             </div>
+            { addMenuOpen && (
+                <>
+                <div 
+                    style={{ position: 'fixed', top: 100, left: 0, right: 0, bottom: 0, zIndex: 999 }} 
+                    onClick={() => setAddMenuOpen(false)} 
+                />
+                <AddBlockMenu
+                    x={addBtnPos.x}
+                    y={addBtnPos.y}
+                    onSelect={(type) => {
+                    addBlock(type as any);
+                    setAddMenuOpen(false);
+                    }}
+                    onClose={() => setAddMenuOpen(false)}
+                />
+                </>
+            )}
         </header>
     )
 }

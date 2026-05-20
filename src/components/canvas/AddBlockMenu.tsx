@@ -17,7 +17,10 @@ interface Props {
 
 export function AddBlockMenu({ x, y, onSelect }: Props) {
   return (
-    <div className="add-block-menu" style={{ position: 'fixed', left: `${Math.min(x, window.innerWidth - 180)}px`, top: `${y}px`, zIndex: 1000 }}>
+    <div 
+        className="add-block-menu" 
+        style={{ position: 'fixed', left: `${Math.min(x, window.innerWidth - 180)}px`, top: `${y}px`, zIndex: 1000 }}
+    >
       <div className="add-block-menu__header">Add Block</div>
       {BLOCK_TYPES.map((bt) => (
         <button key={bt.type} className="add-block-menu__item" onClick={() => onSelect(bt.type)}>

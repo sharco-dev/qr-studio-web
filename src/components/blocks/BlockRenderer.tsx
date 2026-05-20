@@ -1,5 +1,6 @@
 import { useEffect, useRef, memo } from 'react';
 import type { Block } from '../../types/template';
+import { QRBlockRenderer } from './QRBlockRenderer';
 import { TextBlockRenderer } from './TextBlockRenderer';
 import { ImageBlockRenderer } from './ImageBlockRenderer';
 import { HeaderBlockRenderer } from './HeaderBlockRenderer';
@@ -32,6 +33,8 @@ export const BlockRenderer = memo(function BlockRenderer({ block, isSelected, on
 
   const renderContent = () => {
     switch (block.type) {
+      case 'qr':
+        return <QRBlockRenderer block={block} />;
       case 'text':
         return <TextBlockRenderer block={block} />;
       case 'image':

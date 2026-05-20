@@ -7,10 +7,10 @@ import type {
     DividerBlock, 
     SpacerBlock, 
     Block, 
-    QRModuleStyle, 
     TextAlign, 
     FontWeight 
 } from '../../types/template';
+import { QRProperties } from './QRProperties';
 import { ContentProperties } from './ContentProperties';
 import { ImageProperties } from './ImageProperties';
 import { DividerProperties } from './DividerProperties';

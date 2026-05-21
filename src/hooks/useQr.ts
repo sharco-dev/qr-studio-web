@@ -43,7 +43,7 @@ export function useQrDataUrl(svg: string): string {
 }
 
 export function buildQrOptions(
-  url: string,
+  _url: string,
   moduleStyle: QRModuleStyle,
   innerEyeStyle: QRModuleStyle,
   outerEyeStyle: QRModuleStyle,

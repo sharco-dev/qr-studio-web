@@ -20,20 +20,18 @@ export function Topbar () {
     const canRedo = historyIndex < history.length - 1;
 
     const getExportEl = (): HTMLElement | null => {
-        const exportRoot = document.getElementById('export-root');
-        if (exportRoot && exportRoot.firstElementChild) {
-            const wrapper = exportRoot.firstElementChild as HTMLElement;
-            const inner = wrapper.firstElementChild as HTMLElement;
-            return inner || wrapper;
-        }
-
-        return document.querySelector('.editor-canvas__container') as HTMLElement;
+        return document.getElementById('export-root');
     };
 
     const handleExport = async (format: string) => {
         setExportOpen(false);
         const el = getExportEl();
         if (!el) return;
+
+        if (el.clientWidth === 0 || el.children.length === 0) {
+            console.warn('Export root has no content or zero width');
+            return;
+        }
 
         try {
             switch (format) {
